@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">MSS FileTransfer(Socket)</string>
+    <string name="txt_reload">Reload</string>
+    <string name="txt_header">MSS FileTransfer</string>
+    <string name="chanel_lost">Channel lost. Trying again</string>
+    <string name="txt_lost_permanent">Severe! Channel is probably lost permanently. Try Disable/Re-Enable P2P.</string>
+
+    <string name="txt_discover_failed">Discovery Failed :</string>
+    <string name="txt_press_back">Press back to cancel</string>
+    <string name="txt_find_peers">Finding Peers</string>
+    <string name="txt_no_device">No devices found</string>
+    <string name="txt_peer_sts">Peer status :</string>
+    <string name="txt_file_path">File Path:</string>
+    <string name="txt_file_name">File Name</string>
+    <string name="txt_extension">Extension</string>
+    <string name="txt_path_null">path is null</string>
+    <string name="txt_wifi_client_ip">WiFiClientIp</string>
+    <string name="txt_grp_owner">GroupOwnerAddress</string>
+    <string name="txt_inside_chk">inside the check:</string>
+    <string name="txt_server_boolean">ServerBoolean</string>
+    <string name="txt_in_if_cond">in if condition</string>
+
+
+</resources>

@@ -1,0 +1,9 @@
+<resources>
+
+    <dimen name="logo_height">190dp</dimen>
+    <dimen name="signup_logo_height">120dp</dimen>
+    <dimen name="input_text_height">50dp</dimen>
+    <dimen name="toolbar_refresh_button">42dp</dimen>
+    <dimen name="nav_header_height">200dp</dimen>
+
+</resources>
