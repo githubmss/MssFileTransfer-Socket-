@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/AppTheme.NoActionBar">
+    <include layout="@layout/custom_bar"></include>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin_view">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="0.05"
+            android:layout_height="match_parent"
+            android:id="@+id/view"></View>
+
+        <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="0.1"
+        android:layout_height="@dimen/flag_height"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/india_flag"/>
+
+
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.8"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/flag"
+        android:text="@string/india_office"
+        android:paddingLeft="@dimen/padding"
+        android:gravity="center_vertical"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_size_midnormal"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/address_height"
+                android:text="@string/txt_contact_address"
+                android:paddingLeft="@dimen/padding"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_normal"/>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/email_height"
+    android:orientation="horizontal">
+    <ImageView
+        android:layout_width="@dimen/email"
+        android:layout_height="@dimen/email"
+        android:layout_gravity="center"
+        android:src="@android:drawable/sym_action_email"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/email_contact"
+        android:singleLine="true"
+        android:textColor="@color/blue"
+        android:paddingLeft="@dimen/padding_view"
+        android:id="@+id/txt_gmail"
+        android:textSize="@dimen/text_size_middle"
+        android:gravity="center_vertical"/>
+
+
+</LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/email_height"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="@dimen/email"
+                    android:layout_height="@dimen/email"
+                    android:layout_gravity="center"
+                    android:src="@android:drawable/stat_sys_vp_phone_call"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/phone_contact"
+                    android:singleLine="true"
+                    android:id="@+id/txt_phone_number"
+                    android:textColor="@color/black"
+                    android:paddingLeft="@dimen/padding_view"
+                    android:textSize="@dimen/text_size_middle"
+                    android:gravity="center_vertical"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/email_height"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="@dimen/email"
+                    android:layout_height="@dimen/email"
+                    android:layout_gravity="center"
+                    android:src="@drawable/map"/>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <WebView
+                        android:id="@+id/webview"
+                        android:visibility="invisible"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="View Google Map"
+                    android:id="@+id/txt_webview"
+                    android:textColor="@color/black"
+                    android:paddingLeft="@dimen/padding_view"
+                    android:textSize="@dimen/text_size_middle"
+                    android:gravity="center_vertical"
+                    android:visibility="visible"/>
+
+                </FrameLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="0.05"
+            android:layout_height="match_parent"></View>
+
+    </LinearLayout>
+
+</LinearLayout>

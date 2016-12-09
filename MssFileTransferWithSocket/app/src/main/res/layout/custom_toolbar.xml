@@ -34,7 +34,7 @@
                     android:visibility="visible">
 
                     <ImageView
-                        android:id="@+id/ibtn_back"
+                        android:id="@+id/mss"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@null"
@@ -87,6 +87,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:padding="@dimen/text_size_small" />
+
 
                     </LinearLayout>
                 </LinearLayout>

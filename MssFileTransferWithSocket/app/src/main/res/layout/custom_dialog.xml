@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="vertical"
+        android:background="#d5dbdb"
+        android:layout_centerInParent="true">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="58dp"
+        android:textColor="@color/black"
+        android:text="+91-81959-00456"
+        android:textSize="@dimen/text_size_midnormal"
+        android:textStyle="bold"
+        android:id="@+id/dialpad_number_first"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:textColor="@color/black"
+            android:text="+91-88720-13695"
+            android:id="@+id/dialpad_number_second"
+            android:textSize="@dimen/text_size_midnormal"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+</LinearLayout>

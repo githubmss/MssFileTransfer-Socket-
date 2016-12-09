@@ -1,22 +1,30 @@
 package com.mss.filetransferwithsocket;
 
-import android.app.Activity;
+import android.*;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-
+import android.content.pm.PackageManager;
 import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.net.wifi.p2p.WifiP2pInfo;
-import android.net.wifi.p2p.WifiP2pManager.PeerListListener;
 import android.net.wifi.p2p.WifiP2pManager;
-import android.net.wifi.p2p.WifiP2pManager.ChannelListener;
-import android.os.Bundle;
+import android.net.wifi.p2p.WifiP2pManager.ActionListener;
 import android.net.wifi.p2p.WifiP2pManager.Channel;
+import android.net.wifi.p2p.WifiP2pManager.ChannelListener;
+import android.net.wifi.p2p.WifiP2pManager.ConnectionInfoListener;
+import android.net.wifi.p2p.WifiP2pManager.PeerListListener;
+import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -28,17 +36,15 @@ import android.widget.Toast;
 import com.mss.filetransferwithsocket.adapter.WiFiPeerListAdapter;
 import com.mss.filetransferwithsocket.interfaces.OnDeviceStatusChange;
 import com.mss.filetransferwithsocket.interfaces.OnfriendDivceStatus;
+import com.mss.filetransferwithsocket.services.GPSTracker;
 import com.mss.filetransferwithsocket.utils.AppController;
+import com.mss.filetransferwithsocket.utils.AppPreferences;
 import com.mss.filetransferwithsocket.utils.Session;
-
-import android.net.wifi.p2p.WifiP2pManager.ActionListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import android.net.wifi.p2p.WifiP2pManager.ConnectionInfoListener;
-
-public class MainActivity extends Activity implements ChannelListener, PeerListListener, View.OnClickListener, OnDeviceStatusChange, AdapterView.OnItemClickListener, OnfriendDivceStatus, ConnectionInfoListener {
+public class MainActivity extends AppCompatActivity implements ChannelListener, PeerListListener, View.OnClickListener, OnDeviceStatusChange, AdapterView.OnItemClickListener, OnfriendDivceStatus, ConnectionInfoListener {
 
     public static final String TAG = "wifidirectdemo";
     private WifiP2pManager mManager;
@@ -52,8 +58,9 @@ public class MainActivity extends Activity implements ChannelListener, PeerListL
     PeerListListener peerListListener;
     private TextView txtDeviceName, txtDeviceStatus, txtHeader;
     private ListView lvDeviceList;
-    ImageView imgReload;
+    ImageView imgReload, menuItem;
     LinearLayout llReload;
+    Toolbar toolbar;
     private WiFiPeerListAdapter mAdapter;
     public static String AVAILABLE = "Available";
     public static String UNAVAILABLE = "Unavailable";
@@ -61,6 +68,9 @@ public class MainActivity extends Activity implements ChannelListener, PeerListL
     public static String INVITED = "Invited";
     public static String FAILED = "failed";
     public static String UNKNOWN = "Unknown";
+    Context mContext;
+    private GPSTracker gps;
+    private AppPreferences mSession;
 
     public void setIsWifiP2pEnabled(boolean isWifiP2pEnabled) {
         this.mIsWifiP2pEnabled = isWifiP2pEnabled;
@@ -70,7 +80,52 @@ public class MainActivity extends Activity implements ChannelListener, PeerListL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mContext = this;
+        mSession = new AppPreferences(this);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ImageView imgIcon = (ImageView) findViewById(R.id.mss);
+        imgIcon.setImageResource(R.drawable.app_icon);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
+        if (ContextCompat.checkSelfPermission(mContext, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        } else {
+            gps = new GPSTracker(mContext, MainActivity.this);
+            // Check if GPS enabled
+            if (gps.canGetLocation()) {
+                double latitude = gps.getLatitude();
+                mSession.setPrefrenceString(Constants.CURRENT_LATITUDE, "" + latitude);
+                double longitude = gps.getLongitude();
+                mSession.setPrefrenceString(Constants.CURRENT_LONGITUDE, "" + longitude);
+            } else {
+                gps.showSettingsAlert();
+            }
+        }
         initUi();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_contact, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.contact_us) {
+            Intent intent = new Intent(MainActivity.this, ContactUsActivity.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.about_us) {
+            Intent intent = new Intent(MainActivity.this, AboutUsActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void initUi() {
@@ -101,6 +156,31 @@ public class MainActivity extends Activity implements ChannelListener, PeerListL
         txtHeader.setText(R.string.txt_header);
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode) {
+            case 1: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    gps = new GPSTracker(mContext, MainActivity.this);
+                    if (gps.canGetLocation()) {
+                        double latitude = gps.getLatitude();
+                        mSession.setPrefrenceString(Constants.CURRENT_LATITUDE, "" + latitude);
+                        double longitude = gps.getLongitude();
+                        mSession.setPrefrenceString(Constants.CURRENT_LONGITUDE, "" + longitude);
+                    } else {
+                        gps.showSettingsAlert();
+                    }
+                } else {
+                }
+                return;
+            }
+        }
+    }
 
     @Override
     public void onResume() {

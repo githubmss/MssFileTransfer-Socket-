@@ -12,5 +12,13 @@
     <dimen name="text_size_xlarge">30sp</dimen>
     <dimen name="text_size_xxlarge">40sp</dimen>
     <dimen name="Nav_size_list">240dp</dimen>
-
+<!--Activtity Contact us-->
+    <dimen name="margin_view">20dp</dimen>
+    <dimen name="flag_height">45dp</dimen>
+    <dimen name="flag">40dp</dimen>
+    <dimen name="padding">15dp</dimen>
+    <dimen name="address_height">100dp</dimen>
+    <dimen name="email_height">35dp</dimen>
+    <dimen name="email">30dp</dimen>
+    <dimen name="padding_view">10dp</dimen>
 </resources>

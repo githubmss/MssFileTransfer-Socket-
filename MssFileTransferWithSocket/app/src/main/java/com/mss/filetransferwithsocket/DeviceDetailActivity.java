@@ -90,8 +90,8 @@ public class DeviceDetailActivity extends Activity implements ConnectionInfoList
         btnSendImage = (Button) findViewById(R.id.btn_send_image);
         btnSendVideo = (Button) findViewById(R.id.btn_send_video);
         imgStatus = (ImageView) findViewById(R.id.img_status);
+        ibtnBack = (ImageView) findViewById(R.id.mss);
         txtHeader = (TextView) findViewById(R.id.toolbar_title);
-        ibtnBack = (ImageView) findViewById(R.id.ibtn_back);
         Session.setDeviceActionListenerDisconnect(this);
         populateUi();
     }
@@ -337,19 +337,24 @@ public class DeviceDetailActivity extends Activity implements ConnectionInfoList
 
                 });
                 break;
+
             case R.id.btn_send_video:
+
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("video/*");
                 startActivityForResult(intent, CHOOSE_FILE_RESULT_CODE);
                 break;
+
             case R.id.btn_send_image:
                 Intent intent1 = new Intent(Intent.ACTION_PICK);
                 intent1.setType("image/*");
                 startActivityForResult(intent1, CHOOSE_FILE_RESULT_CODE);
                 break;
-            case R.id.ibtn_back:
+
+            case R.id.mss:
                 finish();
                 break;
+
         }
     }
 

@@ -1,18 +1,18 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    compileSdkVersion 23
+    buildToolsVersion "24.0.3"
     defaultConfig {
-        applicationId "com.mss.filetransferwithsocket"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+        applicationId "com.mss.filetransferwithsocket"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        useLibrary 'org.apache.http.legacy'
     }
-    //====================Add below two line=============
     dexOptions {
         javaMaxHeapSize "4g" //specify the heap size for the dex process
         preDexLibraries = false //delete the already predexed libraries
@@ -24,14 +24,25 @@ android {
         }
     }
 }
-
+repositories {
+    mavenCentral()
+}
 dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.0.0'
-    compile 'com.android.support:multidex:1.0.1'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.google.android.gms:play-services:8.4.0'
+    compile 'com.mikhaellopez:circularimageview:3.0.2'
+    compile 'com.google.android.gms:play-services:3.1.36'
+    compile 'de.hdodenhof:circleimageview:1.2.1'
+    compile 'com.google.android.gms:play-services-maps:9.6.1'
+    compile 'com.google.android.gms:play-services:9.6.1'
+    compile 'com.android.support:design:24.2.1'
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:design:25.0.0'
 }

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.mss.filetransferwithsocket.MainActivity">
+    tools:context="com.mss.filetransferwithsocket.MainActivity"
+    android:theme="@style/AppTheme.NoActionBar">
 
     <include layout="@layout/custom_toolbar"></include>
 
@@ -54,7 +55,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@mipmap/contact" />
+                        android:src="@mipmap/ic_launcher" />
 
 
                 </LinearLayout>

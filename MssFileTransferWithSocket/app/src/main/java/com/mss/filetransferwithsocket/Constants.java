@@ -76,7 +76,8 @@ public final class Constants {
     public static final String HASH_MAP_KEY_SEARCH_LOCKED_PUBLIC_ROOM_ICON = "LOCK ICON";
     public static final String HASH_MAP_KEY_SEARCH_NEW_MSG_ICON = "NEW MSG";
     public static final String HASH_MAP_KEY_CLOSE_THE_APP = "CLOSE";
-
+    public static String CURRENT_LATITUDE = "current_lat";
+    public static String CURRENT_LONGITUDE = "current_lng";
 
     public static final String HASH_MAP_KEY_CHAT_ACT_USERNAME = "NAME";
     public static final String HASH_MAP_KEY_CHAT_ACT_TIME = "TIME";

@@ -19,6 +19,10 @@
     <string name="txt_inside_chk">inside the check:</string>
     <string name="txt_server_boolean">ServerBoolean</string>
     <string name="txt_in_if_cond">in if condition</string>
-
+    <string name="txt_contact_address">4th Floor, OfficeNo. 404, Tricity Plaza Building, Peer Muchalla,Zirakpur, Punjab (Adjoining Sector 20, Panchkula) 140603, India.</string>
+<string name="email_contact">info@mastersoftwaresolutions.com</string>
+    <string name="phone_contact">+91-81959-00456, +91-88720-13695</string>
+    <string name="google_txt">View In Google Map</string>
+    <string name="india_office">INDIA OFFICE</string>
 
 </resources>
